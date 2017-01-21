@@ -17,7 +17,7 @@
   <div class="container">
     <div class="content">
       <div class="title">
-        <div><h1>Ahmad 'AYA' Sanusi</h1></div>
+        <div><a href="https://sanusi.me" title="Landing Page"><h1>Ahmad 'AYA' Sanusi</h1></a></div>
         <div class="thin"><small>The Child of Lily, Yuriko Aya</small></div>
       </div>
       <!--- Navbar -->
