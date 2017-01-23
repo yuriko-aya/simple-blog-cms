@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 21, 2017 at 01:44 PM
+-- Generation Time: Jan 23, 2017 at 12:50 PM
 -- Server version: 10.0.28-MariaDB-0ubuntu0.16.04.1
 -- PHP Version: 7.0.8-0ubuntu0.16.04.3
 
@@ -53,6 +53,19 @@ CREATE TABLE `post_meta` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `statistik`
+--
+
+CREATE TABLE `statistik` (
+  `id` int(8) NOT NULL,
+  `session_stats` varchar(32) NOT NULL,
+  `page` text NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -82,6 +95,12 @@ ALTER TABLE `post_meta`
   ADD KEY `post_id` (`post_id`);
 
 --
+-- Indexes for table `statistik`
+--
+ALTER TABLE `statistik`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -101,6 +120,11 @@ ALTER TABLE `post`
 --
 ALTER TABLE `post_meta`
   MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `statistik`
+--
+ALTER TABLE `statistik`
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `user`
 --

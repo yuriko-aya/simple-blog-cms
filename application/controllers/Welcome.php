@@ -5,6 +5,10 @@ class Welcome extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('post_model');
+		$this->load->model('statistik_model');
+		if(!isset($_SESSION['statistic']) or empty($_SESSION['statistic'])) {
+			$_SESSION['statistic'] = dechex(rand(0x000000, 0xFFFFFF));
+		}
 	}
 
 	/**
@@ -24,6 +28,7 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
+		$this->statistik_model->insert_stat($_SESSION['statistic'],'home');
 		$data['all_posts'] = $this->post_model->all_post(0)->result();
 		$data['title'] = "Home";
 		$data['sharer_links'] = $this->sharer_link();
@@ -48,6 +53,7 @@ class Welcome extends CI_Controller {
 		if($getposts) {
 			$data['all_posts'] = $getposts->result();
 			$data['title'] = $getposts->row('title');
+			$this->statistik_model->insert_stat($_SESSION['statistic'],$data['title']);
 			$data['sharer_links'] = $this->sharer_link();
 			$this->load->view('templates/header',$data);
 			$this->load->view('home',$data);
