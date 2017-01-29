@@ -11,6 +11,7 @@ class Login extends CI_Controller {
   public function index() {
     $this->get_login();
     $data['title'] = "Login";
+    $data['desc'] = "Login page";
     $this->load->view('templates/header',$data);
     $this->load->view('login',$data);
   }
@@ -18,6 +19,7 @@ class Login extends CI_Controller {
   public function register() {
     $this->get_login();
     $data['title'] = "Register";
+    $daa['desc'] = "Registration page";
     $this->load->view('templates/header',$data);
     $this->load->view('login',$data);
   }
@@ -31,6 +33,7 @@ class Login extends CI_Controller {
     } else {
       $this->login_model->insert_user($username,$password);
       $data['title'] = "Registration success";
+      $data['desc'] = "Registration success";
       $data['error_mes'] = 'User '.$this->input->post('username').' berhasil didaftarkan';
       $this->load->view('templates/header',$data);
       $this->load->view('login',$data);
@@ -47,6 +50,7 @@ class Login extends CI_Controller {
     } else {
       $data['error_mes'] = "Wrong user or password";
       $data['title'] = "Login";
+      $data['desc'] = "Login error";
       $this->load->view('templates/header',$data);
       $this->load->view('login',$data);
     }
