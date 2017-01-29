@@ -7,6 +7,7 @@ class Admin extends CI_Controller {
     $this->load->helper('url_helper');
     $this->cek_login();
     $this->load->model('post_model');
+    $this->load->model('statistik_model');
   }
   private function cek_login() {
     if(!isset($_SESSION['user_login']) || empty($_SESSION['user_login']) && $_SESSION['user_level'] != 'admin') {
@@ -15,6 +16,9 @@ class Admin extends CI_Controller {
   }
   public function index() {
     $data['title'] = "Admin Dashboard";
+    $data['visitor'] = $this->statistik_model->total_visitor();
+    $data['view'] = $this->statistik_model->total_view();
+    $data['post'] = $this->statistik_model->total_post();
     $this->load->view('admin/header',$data);
     $this->load->view('admin/dashboard',$data);
     $this->load->view('admin/footer');
