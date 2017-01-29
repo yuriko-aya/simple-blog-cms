@@ -54,7 +54,21 @@ class Post_model extends CI_Model {
   public function post_list($type) {
     $this->db->select('title,slug');
     $this->db->from($type);
+    $this->db->order_by('date', 'DESC');
     return $query = $this->db->get();
+  }
+
+  public function search_by_meta($meta_type,$keyword) {
+    $this->db->select('post.post_id,title,slug,author,excerpt,`date`');
+    $this->db->from('post');
+    $this->db->join('post_meta','post_meta.post_id = post.post_id');
+    $this->db->like($meta_type,$keyword);
+    $this->db->order_by('date', 'DESC');
+    return $this->db->get();
+  }
+
+  public function search_engine($keyword) {
+    return $this->db->query("SELECT post.post_id,title,slug,author,excerpt,`date` FROM post JOIN post_meta ON post_meta.post_id = post.post_id WHERE CONCAT_WS('', content, title, category, tags) LIKE '%$keyword%' ORDER BY `date` DESC");
   }
 
 }
